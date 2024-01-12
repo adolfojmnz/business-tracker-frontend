@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getProductList } from "@/app/api/requesters";
 import { getCategoryList } from "@/app/api/requesters";
-import { formatDateTime } from "../timeFormatter";
 
 const ProductList = () => {
   const router = useRouter();
@@ -73,7 +72,7 @@ const ProductList = () => {
     const { name, value } = e.target;
     let updatedValue = value;
     
-    if (value === "--SELECT--") {
+    if (value === "-- All --") {
       updatedValue = "";
     }
 
@@ -100,7 +99,7 @@ const ProductList = () => {
             name="category"
             className="w-full p-2 border border-gray-200 mb-2"
           >
-            <option>--SELECT--</option>
+            <option>-- All --</option>
             {categories !== null ? (
               categories.map((category, index) => (
                 <option key={index} value={category.id}>
@@ -158,7 +157,7 @@ const ProductList = () => {
                 {product.stock} {product.unit_symbol}
               </td>
               <td className="py-2 px-4 border-b text-center w-1/9">{product.category_name}</td>
-              <td className="py-2 px-4 border-b text-center w-1/9">{formatDateTime(product.added_on)}</td>
+              <td className="py-2 px-4 border-b text-center w-1/9">{product.added_on.slice(0,10)}</td>
             </tr>
           ))
         ) : (
