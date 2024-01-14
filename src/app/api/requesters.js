@@ -100,6 +100,7 @@ export const createCategory = createObject("categories");
 export const updateCategory = updateObject("categories");
 export const getCategoryList = getObjectList("categories");
 export const getCategoryDetails = getObjectDetails("categories");
+export const getCategoryAnalitics = getObjectAnalitics("categories");
 
 // Orders
 export const createOrder = createObject("orders");
