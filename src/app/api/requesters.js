@@ -73,9 +73,9 @@ function getObjectDetails(endpoint) {
   };
 }
 
-function getObjectAnalitics(endpoint) {
+function getObjectAnalytics(endpoint) {
   return async function (objID) {
-    const url = `http://localhost:8000/api/v1/${endpoint}/${objID}/analitics`;
+    const url = `http://localhost:8000/api/v1/${endpoint}/${objID}/analytics`;
 
     const options = {
       method: "GET",
@@ -93,14 +93,14 @@ export const createProduct = createObject("products");
 export const updateProduct = updateObject("products");
 export const getProductList = getObjectList("products");
 export const getProductDetails = getObjectDetails("products");
-export const getProductAnalitics = getObjectAnalitics("products");
+export const getProductAnalytics = getObjectAnalytics("products");
 
 // Categories
 export const createCategory = createObject("categories");
 export const updateCategory = updateObject("categories");
 export const getCategoryList = getObjectList("categories");
 export const getCategoryDetails = getObjectDetails("categories");
-export const getCategoryAnalitics = getObjectAnalitics("categories");
+export const getCategoryAnalytics = getObjectAnalytics("categories");
 
 // Orders
 export const createOrder = createObject("orders");

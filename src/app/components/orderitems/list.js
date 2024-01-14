@@ -36,11 +36,11 @@ const OrderItemList = () => {
   const orderItemsTableHead = () => {
     return (
       <thead>
-        <tr className="bg-gray-100">
-          <th className="py-2 px-4 bOrderItem-b text-center w-1/9">Product</th>
-          <th className="py-2 px-4 bOrderItem-b text-center w-1/9">Quantity</th>
-          <th className="py-2 px-4 bOrderItem-b text-center w-1/9">Price (USD)</th>
-          <th className="py-2 px-4 bOrderItem-b text-center w-1/9">Sub Total (USD)</th>
+        <tr className="bg-gray-100 border">
+          <th className="py-2 px-4 text-center w-1/9">Product</th>
+          <th className="py-2 px-4 text-center w-1/9">Quantity</th>
+          <th className="py-2 px-4 text-center w-1/9">Price (USD)</th>
+          <th className="py-2 px-4 text-center w-1/9">Sub Total (USD)</th>
         </tr>
       </thead>
     );
@@ -53,13 +53,13 @@ const OrderItemList = () => {
           orderItems.map((orderItem, index) => (
             <tr
               key={index}
-              className="hover:bg-[#d3d3d3]"
+              className="hover:bg-[#d3d3d3] border-l border-r"
               onClick={() => handlerowClick(orderItem.id)}
             >
-              <td className="py-2 px-4 bOrderItem-b text-center w-1/9">{orderItem.product_name}</td>
-              <td className="py-2 px-4 bOrderItem-b text-center w-1/9">{orderItem.quantity} {orderItem.product_unit}</td>
-              <td className="py-2 px-4 bOrderItem-b text-center w-1/9">{orderItem.product_price}</td>
-              <td className="py-2 px-4 bOrderItem-b text-center w-1/9">{orderItem.subtotal}</td>
+              <td className="py-2 px-4 border-b text-center w-1/9">{orderItem.product_name}</td>
+              <td className="py-2 px-4 border-b text-center w-1/9">{orderItem.quantity} {orderItem.product_unit}</td>
+              <td className="py-2 px-4 border-b text-center w-1/9">{orderItem.product_price}</td>
+              <td className="py-2 px-4 border-b text-center w-1/9">{orderItem.subtotal}</td>
             </tr>
           ))
         ) : (
@@ -80,10 +80,13 @@ const OrderItemList = () => {
           <p className="text-center">{`${orderItemsError}`}</p>
         </div>
       ) : (
-        <table className="w-full bOrderItem-collapse">
-          {orderItemsTableHead()}
-          {orderItemsTableBody()}
-        </table>
+        <>
+          <h1 className="text-2xl mt-6">Order Items</h1>
+          <table className="w-full bOrderItem-collapse mt-2">
+            {orderItemsTableHead()}
+            {orderItemsTableBody()}
+          </table>
+        </>
       )}
     </>
   );

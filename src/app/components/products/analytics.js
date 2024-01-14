@@ -1,25 +1,25 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { formatDateTime } from "../timeFormatter";
-import { getProductAnalitics } from "@/app/api/requesters";
+import { getProductAnalytics } from "@/app/api/requesters";
 
-const ProductAnalitics = () => {
+const ProductAnalytics = () => {
   const router = useRouter();
   const [error, setError] = useState(null);
-  const [productAnalitics, setProductAnalitics] = useState({})
+  const [productAnalytics, setProductAnalytics] = useState({})
 
   useEffect(() => {
     if (router.isReady) {
-      fetchProductAnalitics(router.query.productID);
+      fetchProductAnalytics(router.query.productID);
     }
   }, [router.isReady])
 
-  const fetchProductAnalitics = async(productID) => {
+  const fetchProductAnalytics = async(productID) => {
     try {
-      const response = await getProductAnalitics(productID);
+      const response = await getProductAnalytics(productID);
       if (response.ok) {
         const data = await response.json();
-        setProductAnalitics(data);
+        setProductAnalytics(data);
       } else {
         const status = response.status;
         const statusText = response.statusText;
@@ -34,33 +34,33 @@ const ProductAnalitics = () => {
 
   const handlePurchaseRowClick = () => {}
 
-  const productAnaliticsTable = (analitics) => {
+  const productAnalyticsTable = (analytics) => {
     return (
       <table className="w-full border rounded">
         <tbody>
           <tr>
             <td className="py-2 px-4 border-b text-left">Total Sold</td>
-            <td className="py-2 px-4 border-b text-right">{analitics.total_sold} {analitics.unit_symbol}</td>
+            <td className="py-2 px-4 border-b text-right">{analytics.total_sold} {analytics.unit_symbol}</td>
           </tr>
           <tr>
             <td className="py-2 px-4 border-b text-left">Total Revenue</td>
-            <td className="py-2 px-4 border-b text-right">$ {analitics.total_revenue}</td>
+            <td className="py-2 px-4 border-b text-right">$ {analytics.total_revenue}</td>
           </tr>
           <tr>
             <td className="py-2 px-4 border-b text-left">Total Buyers</td>
-            <td className="py-2 px-4 border-b text-right">{analitics.total_customers}</td>
+            <td className="py-2 px-4 border-b text-right">{analytics.total_customers}</td>
           </tr>
           <tr>
             <td className="py-2 px-4 border-b text-left">Avg Order</td>
-            <td className="py-2 px-4 border-b text-right">{analitics.avg_order_quantity} {analitics.unit_symbol}</td>
+            <td className="py-2 px-4 border-b text-right">{analytics.avg_order_quantity} {analytics.unit_symbol}</td>
           </tr>
           <tr>
             <td className="py-2 px-4 border-b text-left">Min Order</td>
-            <td className="py-2 px-4 border-b text-right">{analitics.min_order_quantity} {analitics.unit_symbol}</td>
+            <td className="py-2 px-4 border-b text-right">{analytics.min_order_quantity} {analytics.unit_symbol}</td>
           </tr>
           <tr>
             <td className="py-2 px-4 border-b text-left">Max Order</td>
-            <td className="py-2 px-4 border-b text-right">{analitics.max_order_quantity} {analitics.unit_symbol}</td>
+            <td className="py-2 px-4 border-b text-right">{analytics.max_order_quantity} {analytics.unit_symbol}</td>
           </tr>
         </tbody>
       </table>
@@ -139,31 +139,31 @@ const ProductAnalitics = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl mb-4">Product Analitics</h1>
+      <h1 className="text-2xl mb-4">Product Analytics</h1>
       {error !== null ? (
         <p className="text-center">{`${error}`}</p>
       ) : (
-        productAnalitics ? (
+        productAnalytics ? (
           <>
-            {productAnaliticsTable(productAnalitics)}
+            {productAnalyticsTable(productAnalytics)}
 
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-1">
                 <h1 className="text-2xl py-4 text-center">Top Customers</h1>
-                {topCustomersTable(productAnalitics.top_customers)}
+                {topCustomersTable(productAnalytics.top_customers)}
               </div>
               <div className="col-span-1">
                 <h1 className="text-2xl py-4 text-center">Latest Purchases</h1>
-                {latestPurchases(productAnalitics.latest_purchases)}
+                {latestPurchases(productAnalytics.latest_purchases)}
               </div>
             </div>
           </>
         ) : (
-          <p className="text-center">No Analitics Found!</p>
+          <p className="text-center">No Analytics Found!</p>
         )
       )}
     </div>
   )
 }
 
-export default ProductAnalitics;
+export default ProductAnalytics;

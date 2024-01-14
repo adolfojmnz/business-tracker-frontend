@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { formatDateTime } from "../timeFormatter";
 import { getProductDetails } from "@/app/api/requesters";
-import ProductAnalitics from "./analitics";
+import ProductAnalytics from "./analytics";
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -73,7 +73,7 @@ const ProductDetails = () => {
         product ? (
           <>
             {productDetailsTable(product)}
-            <ProductAnalitics />
+            <ProductAnalytics />
           </>
         ) : (
           <p>Product not found.</p>

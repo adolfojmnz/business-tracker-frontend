@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { formatDateTime } from "../timeFormatter";
 import { getCategoryDetails } from "@/app/api/requesters";
-import CategoryAnalitics from "./analitics";
+import CategoryAnalytics from "./analytics";
 
 const CategoryDetails = () => {
   const router = useRouter();
@@ -65,7 +65,7 @@ const CategoryDetails = () => {
         category ? (
           <>
             {categoryDetailsTable(category)}
-            <CategoryAnalitics />
+            <CategoryAnalytics />
           </>
         ) : (
           <p>Category Not Found!</p>
